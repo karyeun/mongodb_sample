@@ -1,5 +1,5 @@
 var db = require('./lib/dbV2');
-var sleep = require('system-sleep');
+//var sleep = require('system-sleep');
 //var sleep = require('sleep-promise');
 
 console.log('mongodb sample');
@@ -34,37 +34,40 @@ var days = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
 var days2 = [1, 2];
 var saveCounter = 0;
 //db.connect().then(() => {
-//years.forEach(yr => {
-var yr = 2018;
-mths.forEach(mth => {
-    //var mth = 2;
-    days2.forEach(day => {
-        //var day = 5;
-        var filterDate = new Date(yr, mth, day, 9); // 5/1 9am
-        var filter = {
-            enable: true,
-            'contents.date': filterDate
-        };
-        // db.retrieve('schedules', filter).then(schedules => {
-        //     console.log('we have ' + schedules.length + ' schedule(s)');
-        // }).catch(err => {
-        //     console.log(err);
-        // });
+setTimeout(() => {
+    years.forEach(yr => {
+        //var yr = 2018;
+        mths.forEach(mth => {
+            //var mth = 2;
+            days2.forEach(day => {
+                //var day = 5;
+                var filterDate = new Date(yr, mth, day, 9); // 5/1 9am
+                var filter = {
+                    enable: true,
+                    'contents.date': filterDate
+                };
+                // db.retrieve('schedules', filter).then(schedules => {
+                //     console.log('we have ' + schedules.length + ' schedule(s)');
+                // }).catch(err => {
+                //     console.log(err);
+                // });
 
-        db.save('test_schedules', { 'aDate': filterDate }).then(saved => {
-            saveCounter++;
-            console.log(JSON.stringify(filterDate) + ' saved. (' + saveCounter + ')');
-        }).catch(err => {
-            console.log(err);
+                db.save('test_schedules', { 'aDate': filterDate }).then(saved => {
+                    saveCounter++;
+                    console.log(JSON.stringify(filterDate) + ' saved. (' + saveCounter + ')');
+                }).catch(err => {
+                    console.log(err);
+                });
+
+                //console.log('sleep for 3 seconds');
+                //sleep(3000);
+            });
+            //console.log('sleep for 3 seconds');
+            //sleep(6000);
         });
-
-        console.log('sleep for 3 seconds');
-        sleep(3000);
     });
-    console.log('sleep for 3 seconds');
-    sleep(6000);
-});
-//});
+}, 3000);
+
 // }).catch(err => {
 //     console.log(err);
 // });
