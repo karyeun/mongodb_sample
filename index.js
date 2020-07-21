@@ -71,3 +71,5 @@ setTimeout(() => {
 // }).catch(err => {
 //     console.log(err);
 // });
+
+console.log(`this is for v1.1`);
